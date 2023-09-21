@@ -6,12 +6,11 @@
 
 ## Application Manual
 
-1. Set-up database (docs/movie.sql) :
-   or Please make DB with name "movie"
+1. Please make DB with name "db_movie"
 2. How to Run :
 
    ```
-   go run . or gor run main.go
+   go run . / go run main.go
    ```
 
 ## Endpoints List

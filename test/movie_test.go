@@ -164,7 +164,8 @@ func Test_UpdateSingleMovieId(t *testing.T) {
 }
 
 func Test_DeleteMovie(t *testing.T) {
-	req, err := http.NewRequest("DELETE", "http://localhost:7000/api/movie/5", nil)
+
+	req, err := http.NewRequest("DELETE", "http://localhost:7000/api/movie/1", nil)
 	if err != nil {
 		t.Fatalf("could not create request: %v", err)
 	}
@@ -176,7 +177,7 @@ func Test_DeleteMovie(t *testing.T) {
 	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusOK {
-		t.Errorf("expected status OK; got: %v", res.Status)
+		t.Errorf("expected status Not Found; got: %v", res.Status)
 	}
 
 	var response map[string]interface{}

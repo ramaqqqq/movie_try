@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/jinzhu/gorm"
 )
 
 func C_AddMovie(w http.ResponseWriter, r *http.Request) {
@@ -76,6 +77,14 @@ func C_UpdateSingleMovieId(w http.ResponseWriter, r *http.Request) {
 
 	result, err := datum.H_UpdateMovieId(idMovie)
 	if err != nil {
+
+		if gorm.IsRecordNotFoundError(err) {
+			helpers.Logger("error", "In Server: Movie with ID not found")
+			msg := helpers.MsgErr(http.StatusNotFound, "not found", "Movie with ID not found")
+			helpers.Response(w, http.StatusNotFound, msg)
+			return
+		}
+
 		helpers.Logger("error", "In Server: "+err.Error())
 		msg := helpers.MsgErr(http.StatusBadRequest, "bad request", err.Error())
 		helpers.Response(w, http.StatusBadRequest, msg)
@@ -92,8 +101,16 @@ func C_DeleteMovie(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	idMovie := params["ID"]
 
-	_, err := handlers.H_DeleteMovie(idMovie)
+	result, err := handlers.H_DeleteMovie(idMovie)
 	if err != nil {
+
+		if gorm.IsRecordNotFoundError(err) {
+			helpers.Logger("error", "In Server: Movie with ID not found")
+			msg := helpers.MsgErr(http.StatusNotFound, "not found", "Movie with ID not found")
+			helpers.Response(w, http.StatusNotFound, msg)
+			return
+		}
+
 		helpers.Logger("error", "In Server: "+err.Error())
 		msg := helpers.MsgErr(http.StatusBadRequest, "bad request", err.Error())
 		helpers.Response(w, http.StatusBadRequest, msg)
@@ -101,5 +118,5 @@ func C_DeleteMovie(w http.ResponseWriter, r *http.Request) {
 	}
 
 	helpers.Logger("info", "deleted movies")
-	helpers.Response(w, http.StatusOK, map[string]interface{}{"data": "Delete Movie From Database"})
+	helpers.Response(w, http.StatusOK, map[string]interface{}{"data": result})
 }
