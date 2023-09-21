@@ -66,3 +66,17 @@
 [ERROR]: 21-09-2023 19:24:15 - In Server: Movie with ID not found
 [ERROR]: 21-09-2023 19:24:25 - In Server: record not found
 [ERROR]: 21-09-2023 19:24:25 - In Server: Movie with ID not found
+[INFO]: 21-09-2023 20:04:24 - successfully, created movie: {"created_at":"2023-09-21T20:04:24.976882675+07:00","description":"dalah sebuah film horor Indonesia tahun 2022 yang disutradarai dan ditulis oleh Joko Anwar sebagai sekuel dari film tahun 2017, Pengabdi Setan.","id":8,"image":"5","rating":7,"title":"Pengabdi Setan 2 Comunion","updated_at":"2023-09-21T20:04:24.976882675+07:00"}
+[INFO]: 21-09-2023 20:04:37 - read all movies
+[INFO]: 21-09-2023 20:04:52 - readOne all movies
+[ERROR]: 21-09-2023 20:05:05 - In Server: record not found
+[ERROR]: 21-09-2023 20:05:05 - In Server: Movie with ID not found
+[INFO]: 21-09-2023 20:05:10 - update movies
+[INFO]: 21-09-2023 20:05:27 - deleted movies
+[ERROR]: 21-09-2023 20:05:33 - In Server: record not found
+[ERROR]: 21-09-2023 20:05:33 - In Server: Movie with ID not found
+[INFO]: 21-09-2023 20:06:04 - successfully, created movie: {"created_at":"2023-09-21T20:06:04.607731081+07:00","description":"dalah sebuah film horor Indonesia tahun 2022 yang disutradarai dan ditulis oleh Joko Anwar sebagai sekuel dari film tahun 2017, Pengabdi Setan.","id":9,"image":"bca","rating":9,"title":"Pengabdi Setan 2 Comunion","updated_at":"2023-09-21T20:06:04.607731081+07:00"}
+[INFO]: 21-09-2023 20:06:20 - read all movies
+[INFO]: 21-09-2023 20:06:39 - readOne all movies
+[INFO]: 21-09-2023 20:07:00 - update movies
+[INFO]: 21-09-2023 20:07:29 - deleted movies

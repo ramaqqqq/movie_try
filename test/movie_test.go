@@ -15,17 +15,16 @@ import (
 )
 
 var (
-	server    *httptest.Server
-	middleUrl = os.Getenv("MIDDLE_URL")
+	server *httptest.Server
 )
 
 func Router() http.Handler {
 	r := mux.NewRouter()
-	r.HandleFunc(middleUrl+"/movie", controllers.C_AddMovie).Methods("POST")
-	r.HandleFunc(middleUrl+"/movie", controllers.C_GetAllMovie).Methods("GET")
-	r.HandleFunc(middleUrl+"/movie/{ID}", controllers.C_GetSingleMovieId).Methods("GET")
-	r.HandleFunc(middleUrl+"/movie/{ID}", controllers.C_UpdateSingleMovieId).Methods("PATCH")
-	r.HandleFunc(middleUrl+"/movie/{ID}", controllers.C_DeleteMovie).Methods("DELETE")
+	r.HandleFunc("/Movies", controllers.C_AddMovie).Methods("POST")
+	r.HandleFunc("/Movies", controllers.C_GetAllMovie).Methods("GET")
+	r.HandleFunc("/Movies/{ID}", controllers.C_GetSingleMovieId).Methods("GET")
+	r.HandleFunc("/Movies/{ID}", controllers.C_UpdateSingleMovieId).Methods("PATCH")
+	r.HandleFunc("/Movies/{ID}", controllers.C_DeleteMovie).Methods("DELETE")
 	return r
 }
 
@@ -45,7 +44,7 @@ func Test_AddMovie(t *testing.T) {
 	}
 	payloadBytes, _ := json.Marshal(payload)
 
-	req, err := http.NewRequest("POST", "http://localhost:7000/api/movie", bytes.NewBuffer(payloadBytes))
+	req, err := http.NewRequest("POST", "http://localhost:7000/Movies", bytes.NewBuffer(payloadBytes))
 	if err != nil {
 		t.Fatalf("could not create request: %v", err)
 	}
@@ -72,7 +71,7 @@ func Test_AddMovie(t *testing.T) {
 }
 
 func Test_ReadAllMovie(t *testing.T) {
-	req, err := http.NewRequest("GET", "http://localhost:7000/api/movie", nil)
+	req, err := http.NewRequest("GET", "http://localhost:7000/Movies", nil)
 	if err != nil {
 		t.Fatalf("could not create request: %v", err)
 	}
@@ -97,7 +96,7 @@ func Test_ReadAllMovie(t *testing.T) {
 }
 
 func Test_ReadSingleMovieId(t *testing.T) {
-	req, err := http.NewRequest("GET", "http://localhost:7000/api/movie/1", nil)
+	req, err := http.NewRequest("GET", "http://localhost:7000/Movies/1", nil)
 	if err != nil {
 		t.Fatalf("could not create request: %v", err)
 	}
@@ -137,7 +136,7 @@ func Test_UpdateSingleMovieId(t *testing.T) {
 	server := httptest.NewServer(Router())
 	defer server.Close()
 
-	req, err := http.NewRequest("PATCH", "http://localhost:7000/api/movie/1", bytes.NewReader(updateDataJSON))
+	req, err := http.NewRequest("PATCH", "http://localhost:7000/Movies/1", bytes.NewReader(updateDataJSON))
 	if err != nil {
 		t.Fatalf("could not create request: %v", err)
 	}
@@ -165,7 +164,7 @@ func Test_UpdateSingleMovieId(t *testing.T) {
 
 func Test_DeleteMovie(t *testing.T) {
 
-	req, err := http.NewRequest("DELETE", "http://localhost:7000/api/movie/1", nil)
+	req, err := http.NewRequest("DELETE", "http://localhost:7000/Movies/1", nil)
 	if err != nil {
 		t.Fatalf("could not create request: %v", err)
 	}

@@ -21,15 +21,13 @@ func main() {
 
 	db.Init()
 
-	middleUrl := os.Getenv("MIDDLE_URL")
-
 	ctm := mux.NewRouter()
 
-	ctm.HandleFunc(middleUrl+"/movie", controllers.C_AddMovie).Methods("POST")
-	ctm.HandleFunc(middleUrl+"/movie", controllers.C_GetAllMovie).Methods("GET")
-	ctm.HandleFunc(middleUrl+"/movie/{ID}", controllers.C_GetSingleMovieId).Methods("GET")
-	ctm.HandleFunc(middleUrl+"/movie/{ID}", controllers.C_UpdateSingleMovieId).Methods("PATCH")
-	ctm.HandleFunc(middleUrl+"/movie/{ID}", controllers.C_DeleteMovie).Methods("DELETE")
+	ctm.HandleFunc("/Movies", controllers.C_AddMovie).Methods("POST")
+	ctm.HandleFunc("/Movies", controllers.C_GetAllMovie).Methods("GET")
+	ctm.HandleFunc("/Movies/{ID}", controllers.C_GetSingleMovieId).Methods("GET")
+	ctm.HandleFunc("/Movies/{ID}", controllers.C_UpdateSingleMovieId).Methods("PATCH")
+	ctm.HandleFunc("/Movies/{ID}", controllers.C_DeleteMovie).Methods("DELETE")
 
 	p := os.Getenv("PORT")
 	h := ctm

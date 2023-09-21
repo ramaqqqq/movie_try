@@ -15,8 +15,8 @@
 
 ## Endpoints List
 
-[POST]      `localhost:7000/api/movie` : Add Movie </br>
-[GET]       `localhost:7000/api/movie` : All Movie </br>
-[GET]       `localhost:7000/api/movie/{ID}` : Movie by Id </br>
-[PATCH]     `localhost:7000/api/movie/{ID}` : Edit Movie by Id </br>
-[DELETE]    `localhost:7000/api/movie/{ID}` : Delete Movie by Id </br>
+[POST]      `localhost:7000/Movies` : Add Movie </br>
+[GET]       `localhost:7000/Movies` : All Movie </br>
+[GET]       `localhost:7000/Movies/{ID}` : Movie by Id </br>
+[PATCH]     `localhost:7000/Movies/{ID}` : Edit Movie by Id </br>
+[DELETE]    `localhost:7000/Movies/{ID}` : Delete Movie by Id </br>
